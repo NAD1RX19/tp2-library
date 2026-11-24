@@ -70,4 +70,10 @@ class LibraryTest {
     void booksWithSameIsbnAreEqual() {
         assertEquals(new Book(ISBN, "A", 2000), new Book(ISBN, "B", 2001));
     }
+    @Test
+    void searchIgnoresCase() {
+        assertEquals(1, library.searchByTitle("software").size());
+        assertEquals(1, library.searchByTitle("ENGINEERING").size());
+        assertTrue(library.searchByTitle("python").isEmpty());
+    }
 }

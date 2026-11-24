@@ -2,6 +2,7 @@ package library;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Library {
     private static final int MAX_LOANS = 5;
@@ -50,7 +51,12 @@ public class Library {
         }
         throw new IllegalStateException("Copy is not on loan");
     }
-
+    public List<Book> searchByTitle(String keyword) {
+        String k = keyword.toLowerCase();
+        return books.values().stream()
+                .filter(b -> b.getTitle().toLowerCase().contains(k))
+                .collect(Collectors.toList());
+    }
     private long openLoansOf(String memberNumber) {
         return loans.stream()
                 .filter(l -> l.isOpen() && l.getMember().getNumber().equals(memberNumber))
