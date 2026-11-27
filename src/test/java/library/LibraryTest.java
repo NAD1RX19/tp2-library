@@ -76,4 +76,10 @@ class LibraryTest {
         assertEquals(1, library.searchByTitle("ENGINEERING").size());
         assertTrue(library.searchByTitle("python").isEmpty());
     }
+    @Test
+    void returnedCopyCanBeLentAgain() {
+        library.lend("M-01", "C-001", DAY);
+        library.returnCopy("C-001", DAY.plusDays(1));
+        assertDoesNotThrow(() -> library.lend("M-01", "C-001", DAY.plusDays(2)));
+    }
 }
