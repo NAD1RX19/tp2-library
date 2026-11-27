@@ -13,4 +13,4 @@ public class Copy {
     public Book getBook()              { return book; }
     public boolean isAvailable()       { return available; }
     void setAvailable(boolean available) { this.available = available; }
-}
+}// A copy is one physical exemplar of a book
