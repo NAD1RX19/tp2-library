@@ -82,4 +82,11 @@ class LibraryTest {
         library.returnCopy("C-001", DAY.plusDays(1));
         assertDoesNotThrow(() -> library.lend("M-01", "C-001", DAY.plusDays(2)));
     }
+
+    @Test
+    void lateReturnIsDetected() {
+        Loan loan = library.lend("M-01", "C-001", DAY);
+        library.returnCopy("C-001", DAY.plusDays(20));
+        assertTrue(loan.isLate(DAY.plusDays(20)));
+    }
 }
